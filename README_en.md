@@ -43,14 +43,14 @@ Input file is plain text, **one sentence per line**.
 | `--voicepeak-path` | Path to voicepeak executable | `D:\Voicepeak\Voicepeak\voicepeak.exe` |
 | `-i` / `--input` | Input text file | — |
 | `-o` / `--output-dir` | WAV output directory | `output` |
-| `--list-file` | Annotation file path | — |
+| `--list-file` | Annotation file path (no annotation if omitted) | `slicer_opt.list` |
 | `-n` / `--narrator` | Narrator name | — |
 | `-e` / `--emotion` | Emotion expression | — |
 | `--speed` | Speed (50–200) | — |
 | `--pitch` | Pitch (-300–300) | — |
 | `--prefix` | Output filename prefix | `voice` |
 | `--speaker` | Speaker label in annotation | `narrator` |
-| `--lang` | Language label in annotation | `ja` |
+| `--lang` | Language label in annotation | `JA` |
 | `--list-narrator` | List available narrators | — |
 | `--list-emotion` | List emotions for a narrator | — |
 | `--locale` | UI language (`zh` / `en` / `ja`) | `zh` |

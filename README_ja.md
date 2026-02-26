@@ -43,14 +43,14 @@ python CLI.py \
 | `--voicepeak-path` | voicepeak 実行ファイルのパス | `D:\Voicepeak\Voicepeak\voicepeak.exe` |
 | `-i` / `--input` | 入力テキストファイル | — |
 | `-o` / `--output-dir` | WAV 出力ディレクトリ | `output` |
-| `--list-file` | アノテーションファイルパス | — |
+| `--list-file` | アノテーションファイルのパス（省略するとアノテーションを生成しない） | `slicer_opt.list` |
 | `-n` / `--narrator` | ナレーター名 | — |
 | `-e` / `--emotion` | 感情表現式 | — |
 | `--speed` | 速度（50–200） | — |
 | `--pitch` | ピッチ（-300–300） | — |
 | `--prefix` | 出力ファイル名の接頭辞 | `voice` |
 | `--speaker` | アノテーション内の話者ラベル | `narrator` |
-| `--lang` | アノテーション内の言語ラベル | `ja` |
+| `--lang` | アノテーション内の言語ラベル | `JA` |
 | `--list-narrator` | 利用可能なナレーター一覧 | — |
 | `--list-emotion` | 指定ナレーターの感情一覧 | — |
 | `--locale` | UI言語（`zh` / `en` / `ja`） | `zh` |

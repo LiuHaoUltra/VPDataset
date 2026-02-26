@@ -43,14 +43,14 @@ python CLI.py \
 | `--voicepeak-path` | voicepeak 可执行文件路径 | `D:\Voicepeak\Voicepeak\voicepeak.exe` |
 | `-i` / `--input` | 输入文本文件 | — |
 | `-o` / `--output-dir` | WAV 输出目录 | `output` |
-| `--list-file` | 标注文件路径 | — |
+| `--list-file` | 标注文件路径（省略此参数则不生成标注文件） | `slicer_opt.list` |
 | `-n` / `--narrator` | 角色名称 | — |
 | `-e` / `--emotion` | 情感表达式 | — |
 | `--speed` | 语速（50–200） | — |
 | `--pitch` | 音调（-300–300） | — |
 | `--prefix` | 输出文件名前缀 | `voice` |
 | `--speaker` | 标注中的说话人标签 | `narrator` |
-| `--lang` | 标注中的语言标签 | `ja` |
+| `--lang` | 标注中的语言标签 | `JA` |
 | `--list-narrator` | 列出可用角色 | — |
 | `--list-emotion` | 列出指定角色的情感参数 | — |
 | `--locale` | 界面语言（`zh` / `en` / `ja`） | `zh` |
@@ -67,7 +67,7 @@ python CLI.py \
 
 ```
 音频路径|说话人|语言|文本
-output/voice_0000.wav|narrator|ja|こんにちは、世界！
+output/voice_0000.wav|narrator|JA|こんにちは、世界！
 ```
 
 ## 致谢

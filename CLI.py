@@ -103,14 +103,14 @@ def build_parser(msg):
     parser.add_argument("--voicepeak-path", default=DEFAULT_EXE, help=msg["voicepeak_path"])
     parser.add_argument("-i", "--input", help=msg["input"])
     parser.add_argument("-o", "--output-dir", default="output", help=msg["output_dir"])
-    parser.add_argument("--list-file", help=msg["list_file"])
+    parser.add_argument("--list-file", nargs="?", const="slicer_opt.list", default=None, help=msg["list_file"])
     parser.add_argument("-n", "--narrator", help=msg["narrator"])
     parser.add_argument("-e", "--emotion", help=msg["emotion"])
     parser.add_argument("--speed", type=int, help=msg["speed"])
     parser.add_argument("--pitch", type=int, help=msg["pitch"])
     parser.add_argument("--prefix", default="voice", help=msg["prefix"])
     parser.add_argument("--speaker", default="narrator", help=msg["speaker"])
-    parser.add_argument("--lang", default="ja", help=msg["lang_label"])
+    parser.add_argument("--lang", default="JA", help=msg["lang_label"])
     parser.add_argument("--list-narrator", action="store_true", help=msg["list_narrator"])
     parser.add_argument("--list-emotion", metavar="NARRATOR", help=msg["list_emotion"])
     parser.add_argument("--locale", default="zh", choices=["zh", "en", "ja"], help=msg["locale"])
@@ -177,14 +177,18 @@ def main():
 
     os.makedirs(args.output_dir, exist_ok=True)
 
+    # 标注文件
+    list_writer = None
+    if args.list_file is not None:
+        os.makedirs(os.path.dirname(args.list_file) or ".", exist_ok=True)
+        list_writer = open(args.list_file, "w", encoding="utf-8")
+
     with open(args.input, "r", encoding="utf-8") as f:
         lines = [line.strip() for line in f if line.strip()]
 
     if not lines:
         print(msg["err_empty"], file=sys.stderr)
         sys.exit(1)
-
-    list_writer = open(args.list_file, "w", encoding="utf-8") if args.list_file else None
 
     print(msg["start"].format(n=len(lines)))
 
