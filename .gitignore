@@ -1,0 +1,10 @@
+# 语料脚本文件
+*script*.txt
+
+# Python
+__pycache__/
+*.pyc
+
+# 输出产物
+*.wav
+*.list

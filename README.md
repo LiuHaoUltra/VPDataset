@@ -1,0 +1,77 @@
+# VPDataset
+
+[English](README_en.md) | [日本語](README_ja.md) | 中文
+
+Voicepeak 语音数据集生成工具，用于自动化产出 WAV 语音文件。
+
+## 环境要求
+
+- Python 3.8+
+- [VOICEPEAK](https://www.ah-soft.com/voicepeak/) 已安装
+
+## 快速开始
+
+### 查询角色与情感参数
+
+```powershell
+# 列出所有可用角色
+python CLI.py --list-narrator
+
+# 列出指定角色的情感参数
+python CLI.py --list-emotion 宮舞モカ
+
+# 切换界面语言（支持 zh / en / ja，默认 zh）
+python CLI.py --locale en --help
+```
+
+### 批量生成
+
+```powershell
+python CLI.py \
+  -i moca_script.txt \
+  -o D:\Moca_Dataset\wavs \
+  --list-file D:\Moca_Dataset\moca_training.list \
+  -n 宮舞モカ \
+  -e "mellow=40,teary=10,mumble=5" \
+  --speed 90
+```
+
+输入文件为纯文本，**一行一句**（参考 `moca_script.txt`）。
+
+## CLI 参数
+
+| 参数 | 说明 | 默认值 |
+|------|------|--------|
+| `--voicepeak-path` | voicepeak 可执行文件路径 | `D:\Voicepeak\Voicepeak\voicepeak.exe` |
+| `-i` / `--input` | 输入文本文件 | — |
+| `-o` / `--output-dir` | WAV 输出目录 | — |
+| `--list-file` | GPT-SoVITS 标注文件路径 | — |
+| `-n` / `--narrator` | 角色名称 | — |
+| `-e` / `--emotion` | 情感表达式 | — |
+| `--speed` | 语速（50–200） | — |
+| `--pitch` | 音调（-300–300） | — |
+| `--prefix` | 输出文件名前缀 | `moca` |
+| `--speaker` | 标注中的说话人标签 | `moca_gentle` |
+| `--lang` | 标注中的语言标签 | `ja` |
+| `--list-narrator` | 列出可用角色 | — |
+| `--list-emotion` | 列出指定角色的情感参数 | — |
+| `--locale` | 界面语言（`zh` / `en` / `ja`） | `zh` |
+
+## 输出格式
+
+### WAV 文件
+
+按 `{prefix}_{序号}.wav` 命名，如 `moca_0000.wav`、`moca_0001.wav`。
+
+### 标注文件（`.list`）
+
+GPT-SoVITS 训练格式，每行一条：
+
+```
+音频路径|说话人|语言|文本
+D:\Moca_Dataset\wavs\moca_0000.wav|moca_gentle|ja|ある農場にたくさんの動物たちが住んでいました。
+```
+
+## 致谢
+
+CLI 设计参考了 [voicepeak-cli](https://github.com/petamorikei/voicepeak-cli)。
