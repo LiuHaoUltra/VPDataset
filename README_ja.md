@@ -7,7 +7,7 @@ Voicepeak 音声データセット生成ツール。WAV 音声ファイルの自
 ## 動作環境
 
 - Python 3.8+
-- [VOICEPEAK](https://www.ah-soft.com/voicepeak/) インストール済み
+- [VOICEPEAK](https://www.ah-soft.com/voice/index.html) インストール済み
 
 ## クイックスタート
 
@@ -28,15 +28,13 @@ python CLI.py --locale ja --help
 
 ```powershell
 python CLI.py \
-  -i moca_script.txt \
-  -o D:\Moca_Dataset\wavs \
-  --list-file D:\Moca_Dataset\moca_training.list \
+  -i input.txt \
   -n 宮舞モカ \
   -e "mellow=40,teary=10,mumble=5" \
   --speed 90
 ```
 
-入力ファイルはプレーンテキストで、**1行1文**（`moca_script.txt` を参照）。
+入力ファイルはプレーンテキストで、**1行1文**。
 
 ## CLI オプション
 
@@ -44,14 +42,14 @@ python CLI.py \
 |------------|------|------------|
 | `--voicepeak-path` | voicepeak 実行ファイルのパス | `D:\Voicepeak\Voicepeak\voicepeak.exe` |
 | `-i` / `--input` | 入力テキストファイル | — |
-| `-o` / `--output-dir` | WAV 出力ディレクトリ | — |
+| `-o` / `--output-dir` | WAV 出力ディレクトリ | `output` |
 | `--list-file` | アノテーションファイルパス | — |
 | `-n` / `--narrator` | ナレーター名 | — |
 | `-e` / `--emotion` | 感情表現式 | — |
 | `--speed` | 速度（50–200） | — |
 | `--pitch` | ピッチ（-300–300） | — |
-| `--prefix` | 出力ファイル名の接頭辞 | `moca` |
-| `--speaker` | アノテーション内の話者ラベル | `moca_gentle` |
+| `--prefix` | 出力ファイル名の接頭辞 | `voice` |
+| `--speaker` | アノテーション内の話者ラベル | `narrator` |
 | `--lang` | アノテーション内の言語ラベル | `ja` |
 | `--list-narrator` | 利用可能なナレーター一覧 | — |
 | `--list-emotion` | 指定ナレーターの感情一覧 | — |
@@ -61,7 +59,7 @@ python CLI.py \
 
 ### WAV ファイル
 
-`{prefix}_{連番}.wav` の形式（例：`moca_0000.wav`、`moca_0001.wav`）。
+`{prefix}_{連番}.wav` の形式（例：`voice_0000.wav`、`voice_0001.wav`）。
 
 ### アノテーションファイル（`.list`）
 
@@ -69,7 +67,7 @@ python CLI.py \
 
 ```
 音声パス|話者|言語|テキスト
-D:\Moca_Dataset\wavs\moca_0000.wav|moca_gentle|ja|ある農場にたくさんの動物たちが住んでいました。
+output/voice_0000.wav|narrator|ja|こんにちは、世界！
 ```
 
 ## 謝辞

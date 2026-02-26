@@ -102,14 +102,14 @@ def build_parser(msg):
     parser = argparse.ArgumentParser(description=msg["desc"])
     parser.add_argument("--voicepeak-path", default=DEFAULT_EXE, help=msg["voicepeak_path"])
     parser.add_argument("-i", "--input", help=msg["input"])
-    parser.add_argument("-o", "--output-dir", help=msg["output_dir"])
+    parser.add_argument("-o", "--output-dir", default="output", help=msg["output_dir"])
     parser.add_argument("--list-file", help=msg["list_file"])
     parser.add_argument("-n", "--narrator", help=msg["narrator"])
     parser.add_argument("-e", "--emotion", help=msg["emotion"])
     parser.add_argument("--speed", type=int, help=msg["speed"])
     parser.add_argument("--pitch", type=int, help=msg["pitch"])
-    parser.add_argument("--prefix", default="moca", help=msg["prefix"])
-    parser.add_argument("--speaker", default="moca_gentle", help=msg["speaker"])
+    parser.add_argument("--prefix", default="voice", help=msg["prefix"])
+    parser.add_argument("--speaker", default="narrator", help=msg["speaker"])
     parser.add_argument("--lang", default="ja", help=msg["lang_label"])
     parser.add_argument("--list-narrator", action="store_true", help=msg["list_narrator"])
     parser.add_argument("--list-emotion", metavar="NARRATOR", help=msg["list_emotion"])
@@ -155,8 +155,6 @@ def main():
     # 校验必要参数
     if not args.input:
         parser.error(msg["err_input"])
-    if not args.output_dir:
-        parser.error(msg["err_output"])
     if not args.narrator:
         parser.error(msg["err_narrator"])
 
