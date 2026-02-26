@@ -18,7 +18,7 @@ Voicepeak 音声データセット生成ツール。WAV 音声ファイルの自
 python CLI.py --list-narrator
 
 # 指定ナレーターの感情パラメータ一覧
-python CLI.py --list-emotion 宮舞モカ
+python CLI.py --list-emotion "Miyamai Moca"
 
 # UI言語の切り替え（zh / en / ja、デフォルト: zh）
 python CLI.py --locale ja --help
@@ -29,8 +29,8 @@ python CLI.py --locale ja --help
 ```powershell
 python CLI.py \
   -i input.txt \
-  -n 宮舞モカ \
-  -e "mellow=40,teary=10,mumble=5" \
+  -n "Miyamai Moca" \
+  -e "honwaka=40,teary=10,bosoboso=5" \
   --speed 90
 ```
 

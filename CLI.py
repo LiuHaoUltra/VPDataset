@@ -127,7 +127,8 @@ def list_emotion(exe, narrator):
     print(result.stdout, end="")
 
 
-def generate(exe, text, narrator, output, emotion=None, speed=None, pitch=None):
+def generate(exe, text, narrator, output, emotion=None, speed=None, pitch=None,
+             retries=3, timeout=60):
     cmd = [exe, "-s", text, "-n", narrator, "-o", output]
     if emotion:
         cmd += ["-e", emotion]
@@ -135,7 +136,23 @@ def generate(exe, text, narrator, output, emotion=None, speed=None, pitch=None):
         cmd += ["--speed", str(speed)]
     if pitch is not None:
         cmd += ["--pitch", str(pitch)]
-    subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+    for attempt in range(1, retries + 1):
+        try:
+            result = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE,
+                                    text=True, timeout=timeout)
+            if result.returncode == 0:
+                return
+            err_msg = result.stderr.strip() if result.stderr else f"exit code {result.returncode}"
+        except subprocess.TimeoutExpired:
+            err_msg = f"超时 ({timeout}s)"
+
+        if attempt < retries:
+            import time
+            print(f"  ⟳ 第 {attempt} 次失败，2秒后重试...", file=sys.stderr)
+            time.sleep(2)
+
+    raise RuntimeError(err_msg)
 
 
 def main():
@@ -182,14 +199,13 @@ def main():
                 generate(args.voicepeak_path, text, args.narrator, wav_path,
                          emotion=args.emotion, speed=args.speed, pitch=args.pitch)
                 success += 1
+                print(f"[{index + 1}/{len(lines)}] ✓ {text[:30]}..."
+                      if len(text) > 30 else f"[{index + 1}/{len(lines)}] ✓ {text}")
 
                 if list_writer:
                     list_writer.write(f"{wav_path}|{args.speaker}|{args.lang}|{text}\n")
 
-                if (index + 1) % 50 == 0:
-                    print(msg["progress"].format(done=index + 1, total=len(lines)))
-
-            except subprocess.CalledProcessError as e:
+            except Exception as e:
                 fail += 1
                 print(msg["fail"].format(i=index, text=text, err=e), file=sys.stderr)
     finally:

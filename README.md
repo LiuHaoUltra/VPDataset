@@ -18,7 +18,7 @@ Voicepeak 语音数据集生成工具，用于自动化产出 WAV 语音文件�
 python CLI.py --list-narrator
 
 # 列出指定角色的情感参数
-python CLI.py --list-emotion 宮舞モカ
+python CLI.py --list-emotion "Miyamai Moca"
 
 # 切换界面语言（支持 zh / en / ja，默认 zh）
 python CLI.py --locale en --help
@@ -29,8 +29,8 @@ python CLI.py --locale en --help
 ```powershell
 python CLI.py \
   -i input.txt \
-  -n 宮舞モカ \
-  -e "mellow=40,teary=10,mumble=5" \
+  -n "Miyamai Moca" \
+  -e "honwaka=40,teary=10,bosoboso=5" \
   --speed 90
 ```
 
@@ -43,7 +43,7 @@ python CLI.py \
 | `--voicepeak-path` | voicepeak 可执行文件路径 | `D:\Voicepeak\Voicepeak\voicepeak.exe` |
 | `-i` / `--input` | 输入文本文件 | — |
 | `-o` / `--output-dir` | WAV 输出目录 | `output` |
-| `--list-file` | GPT-SoVITS 标注文件路径 | — |
+| `--list-file` | 标注文件路径 | — |
 | `-n` / `--narrator` | 角色名称 | — |
 | `-e` / `--emotion` | 情感表达式 | — |
 | `--speed` | 语速（50–200） | — |
@@ -63,7 +63,7 @@ python CLI.py \
 
 ### 标注文件（`.list`）
 
-GPT-SoVITS 训练格式，每行一条：
+每行一条：
 
 ```
 音频路径|说话人|语言|文本

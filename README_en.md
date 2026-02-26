@@ -18,7 +18,7 @@ A voice dataset generation tool for Voicepeak, automating WAV audio file product
 python CLI.py --list-narrator
 
 # List emotion parameters for a specific narrator
-python CLI.py --list-emotion 宮舞モカ
+python CLI.py --list-emotion "Miyamai Moca"
 
 # Switch UI language (zh / en / ja, default: zh)
 python CLI.py --locale en --help
@@ -29,8 +29,8 @@ python CLI.py --locale en --help
 ```powershell
 python CLI.py \
   -i input.txt \
-  -n 宮舞モカ \
-  -e "mellow=40,teary=10,mumble=5" \
+  -n "Miyamai Moca" \
+  -e "honwaka=40,teary=10,bosoboso=5" \
   --speed 90
 ```
 
